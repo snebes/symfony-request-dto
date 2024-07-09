@@ -8,13 +8,21 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class RequestValidationException extends BadRequestHttpException
 {
-    public function __construct(private ConstraintViolationListInterface $violationList)
+    private ConstraintViolationListInterface $violationList;
+
+    public function __construct(ConstraintViolationListInterface $violationList)
     {
         parent::__construct('Request validation failed');
+        $this->violationList = $violationList;
     }
 
     public function getViolationList(): ConstraintViolationListInterface
     {
         return $this->violationList;
+    }
+
+    public function getStatusCode(): int
+    {
+        return 400;
     }
 }

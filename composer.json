@@ -4,7 +4,7 @@
     "description": "Convert Symfony request to DTO object",
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^7.4|^8.0",
         "symfony/http-kernel": "^5.4 || ^6.0",
         "symfony/serializer": "^5.4 || ^6.0",
         "symfony/validator": "^5.4 || ^6.0",

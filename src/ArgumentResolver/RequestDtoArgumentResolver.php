@@ -14,11 +14,13 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RequestDtoArgumentResolver implements ArgumentValueResolverInterface
 {
-    public function __construct(
-        private ValidatorInterface $validator,
-        private SerializerInterface $serializer
-    )
+    private ValidatorInterface $validator;
+    private SerializerInterface $serializer;
+
+    public function __construct(ValidatorInterface $validator, SerializerInterface $serializer)
     {
+        $this->validator = $validator;
+        $this->serializer = $serializer;
     }
 
     public function supports(Request $request, ArgumentMetadata $argument): bool

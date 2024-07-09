@@ -19,7 +19,7 @@ class CustomNormalizer extends ObjectNormalizer
         parent::__construct($classMetadataFactory, new CamelCaseToSnakeCaseNameConverter(), $propertyAccessor, $propertyTypeExtractor, $classDiscriminatorResolver, $objectClassResolver, $defaultContext);
     }
 
-    public function setAttributeValue(object $object, string $attribute, mixed $value, string $format = null, array $context = [])
+    public function setAttributeValue(object $object, string $attribute, $value, ?string $format = null, array $context = []): void
     {
         $boolValue = filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
 
@@ -30,12 +30,12 @@ class CustomNormalizer extends ObjectNormalizer
         parent::setAttributeValue($object, $attribute, $value, $format, $context);
     }
 
-    public function supportsNormalization(mixed $data, string $format = null)
+    public function supportsNormalization($data, ?string $format = null)
     {
         return false;
     }
 
-   public function supportsDenormalization(mixed $data, string $type, string $format = null){
+   public function supportsDenormalization($data, string $type, ?string $format = null){
         if (false === parent::supportsDenormalization($data, $type, $format)) {
             return false;
         }
